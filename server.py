@@ -22,7 +22,26 @@ def setup_template_env(app, _):
         loader=FileSystemLoader(Path(__file__).parent /"templates"),
         autoescape=True,
     )
+
+#TODO
+'''
+import edgedb
+from db.edbw.EdgeDBModel import EdgeDBModel
+from db.edbw.Properties import Type
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
+client = edgedb.create_client()
+
+TodosModel = EdgeDBModel(modelName='Todos_Model', client=client)
+
+@app.before_server_start
+def startDB(app,_):
+    app.ctx.db = TodosModel
+    app.ctx.db = await connect_to_db()
     
+'''
+
 # Run Sanic
 r'''
     sanic server:app -p 7777 --debug --workers=2
